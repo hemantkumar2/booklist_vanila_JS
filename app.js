@@ -34,6 +34,14 @@ class UI {
     <td><a href="#" class="btn btn-danger btn-sm delete">X</a></td>`;
     list.appendChild(row);
   }
+  static showAlert(message, className) {
+    const div = document.createElement("div");
+    div.className = `alert alert-${className}`;
+    div.appendChild(document.createTextNode(message));
+    const container = document.querySelector(".container");
+    const form = document.querySelector("#book-form");
+    container.insertBefore(div, form);
+  }
   static clearFields() {
     document.querySelector("#title").value = "";
     document.querySelector("#author").value = "";
@@ -58,7 +66,7 @@ document.querySelector("#book-form").addEventListener("submit", (e) => {
 
   // Validate form
   if (title === "" || author === "" || isbn === "") {
-    alert("Please fill all the fields");
+    UI.showAlert("Please fill all the fields", "danger");
   } else {
     // create a new book
     const book = new Book(title, author, isbn);
