@@ -34,6 +34,11 @@ class UI {
     <td><a href="#" class="btn btn-danger btn-sm delete">X</a></td>`;
     list.appendChild(row);
   }
+  static clearFields() {
+    document.querySelector("#title").value = "";
+    document.querySelector("#author").value = "";
+    document.querySelector("#isbn").value = "";
+  }
 }
 
 // store class: handles storage
@@ -46,6 +51,11 @@ document.querySelector("#book-form").addEventListener("submit", (e) => {
   const author = document.querySelector("#author").value;
   const isbn = document.querySelector("#isbn").value;
   const book = new Book(title, author, isbn);
-  console.log(book);
+
+  // add book to UI
+  UI.addBookToList(book);
+
+  // clear fields
+  UI.clearFields();
 });
 // EVENT: remove a book
